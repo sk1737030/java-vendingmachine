@@ -12,16 +12,17 @@
 
 ### 기능 요구 사항
 
-- 자판기에 동전을 넣으면 얼마가 들었는지 알 수 있다.
-- 자판기에 든 금액을 차감할 수 있다.
-- 최소 구입 금액(=음료수) 미만인 경우 잔돈이 반환된다.
-- 반환 요청을 하는 경우 잔돈이 반환된다.
-- 최소 개수의 동전으로 잔돈을 돌려준다.
+- [X] 잔돈 모듈에 동전을 넣으면 얼마가 들었는지 알 수 있다.
+- [X] 잔돈 모듈에 든 금액을 차감할 수 있다.
+- [X] VendingMachine 의 ChangesModule로 변경한다.
+- [ ] 최소 개수의 동전으로 잔돈을 돌려준다.
+- [ ] 최소 구입 금액 미만인 경우 잔돈이 반환된다.
+- [ ] 반환 요청을 하는 경우 잔돈이 반환된다.
 
 ---
 
-- VendingMachine
-- VendingMachine#pop(Drink)
-    - VendingMachine#withDraw(Money)
+- ChangesModule
+- ChangesModule#pop()
+    - ChangesModule#withDraw(Money)
 - Coin(500원, 100원, 50원, 10원)
 - Change
