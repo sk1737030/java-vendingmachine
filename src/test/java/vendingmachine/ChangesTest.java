@@ -53,4 +53,18 @@ class ChangesTest {
         List<CoinSet> coinSet = changes.coin();
         assertThat(coinSet).containsExactlyInAnyOrder(CoinSet._500_COIN, CoinSet._100_COIN, CoinSet._50_COIN);
     }
+
+    @DisplayName("동전으로 잔돈을 거슬러 줄 수 없는 경우에도 최소 개수의 동전을 잔돈으로 반환한다")
+    @Test
+    void _5() {
+        Changes changes = new Changes(1);
+        List<CoinSet> coinSet = changes.coin();
+        assertThat(coinSet).isEmpty();
+
+        changes = new Changes(652);
+        coinSet = changes.coin();
+        assertThat(coinSet).containsExactlyInAnyOrder(CoinSet._500_COIN, CoinSet._100_COIN, CoinSet._50_COIN);
+    }
+
+
 }
