@@ -40,10 +40,10 @@ class CoinSetTest {
         );
     }
 
-    @DisplayName("전체 동전은 금액이 큰 순서대로 반환된다.")
+    @DisplayName("전체 동전은 금액이 작은 순서대로 반환된다.")
     @Test
     void _1() {
         assertThat(CoinSet.highestOrder())
-                .containsExactlyInAnyOrder(CoinSet._500_COIN, CoinSet._100_COIN, CoinSet._50_COIN, CoinSet._10_COIN);
+                .containsExactlyInAnyOrder(CoinSet._10_COIN, CoinSet._100_COIN, CoinSet._50_COIN, CoinSet._500_COIN);
     }
 }

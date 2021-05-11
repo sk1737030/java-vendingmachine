@@ -24,7 +24,7 @@ public enum CoinSet {
 
     public static List<CoinSet> highestOrder() {
         return Arrays.stream(values())
-                .sorted(Comparator.reverseOrder())
+                .sorted(Comparator.naturalOrder())
                 .collect(Collectors.toList())
                 ;
     }

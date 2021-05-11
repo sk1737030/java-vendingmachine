@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,7 +16,7 @@ class ChangesTest {
 
     @ParameterizedTest
     @CsvSource({"10, _10_COIN", "50, _50_COIN", "100, _100_COIN", "500, _500_COIN"})
-    void _n원이_남아_있다면_n원짜리_동전_1개_를_돌려_준다(int amount, CoinSet coin) {
+    void _n원이_남아_있다면_n원_짜리_동전_1개_를_돌려_준다(int amount, CoinSet coin) {
         Changes changes = new Changes(amount);
         List<CoinSet> coinSet = changes.coin();
         assertThat(coinSet).containsExactlyInAnyOrder(coin);
@@ -54,48 +53,4 @@ class ChangesTest {
         List<CoinSet> coinSet = changes.coin();
         assertThat(coinSet).containsExactlyInAnyOrder(CoinSet._500_COIN, CoinSet._100_COIN, CoinSet._50_COIN);
     }
-
-}
-
-class Changes {
-    private int amount;
-
-    public Changes(int amount) {
-        this.amount = amount;
-    }
-
-    public List<CoinSet> coin() {
-        List<CoinSet> list = new ArrayList<>();
-        for (CoinSet coin : CoinSet.highestOrder()) {
-            int count = amount / coin.value;
-            for (int i = 0; i < count; i++) {
-                list.add(coin);
-            }
-            amount = amount - (count * coin.value);
-
-        }
-
-        return list;
-    }
-
-    private void extracted(List<CoinSet> list, CoinSet coin) {
-        int count = amount / coin.value;
-        if (count > 0) {
-            amount = amount - (count * coin.value);
-            for (int i = 0; i < count; i++) {
-                list.add(coin);
-            }
-        }
-    }
-
-    private List<CoinSet> getCoinSets(CoinSet coin) {
-        List<CoinSet> list = new ArrayList<>();
-        int quantity = amount / coin.value;
-        for (int i = 0; i < quantity; i++) {
-            list.add(coin);
-        }
-
-        return list;
-    }
-
 }
