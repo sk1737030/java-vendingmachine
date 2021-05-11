@@ -6,12 +6,12 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * Red(질문) -> Green(응답) -> Refactor(정제)
  */
-
-
 class ChangesModuleTest {
 
     @Test
@@ -19,6 +19,7 @@ class ChangesModuleTest {
         ChangesModule vendingMachine = new ChangesModule();
         assertThat(vendingMachine).isNotNull();
     }
+
 
     @ParameterizedTest(name = "자판기에 {0}원을 넣으면 {0}원이 들어있음을 알 수 있다")
     @ValueSource(ints = {500, 1000})
@@ -39,7 +40,7 @@ class ChangesModuleTest {
     void _500원이_들어있는_자판기에_500원을_차감하면_0원이_된다() {
         ChangesModule changesModule = new ChangesModule(500);
         changesModule.withdraw(500);
-        assertThat(changesModule.getChanges()).isEqualTo(0);
+        assertThat(changesModule.getChanges()).isZero();
     }
 
     @Test
@@ -52,12 +53,11 @@ class ChangesModuleTest {
     @Test
     void 최소_구입_금액_미만인_경우_잔돈이_반환된다() {
         ChangesModule changesModule = new ChangesModule(0);
+        // 1
         assertThatIllegalStateException()
                 .isThrownBy(() -> changesModule.withdraw(500));
-    }
-
-    @Test
-    void 최소_개수의_동전으로_잔돈을_돌려준다() {
-
+        // 2
+        IllegalStateException illegalStateException = assertThrows(IllegalStateException.class, () -> changesModule.withdraw(500));
+        assertEquals(illegalStateException.getMessage(), "changes는 음수가 나올 수 없다.");
     }
 }
