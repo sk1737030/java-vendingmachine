@@ -10,7 +10,7 @@ class Changes {
         this.amount = amount;
     }
 
-    public List<CoinSet> coin() {
+    public List<CoinSet> returnChanges() {
         List<CoinSet> list = new ArrayList<>();
         for (CoinSet coin : CoinSet.highestOrder()) {
             int count = amount / coin.value;
@@ -22,4 +22,5 @@ class Changes {
 
         return list;
     }
+
 }
