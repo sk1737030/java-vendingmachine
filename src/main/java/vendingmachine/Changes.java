@@ -18,30 +18,8 @@ class Changes {
                 list.add(coin);
             }
             amount = amount - (count * coin.value);
-
         }
 
         return list;
     }
-
-    private void extracted(List<CoinSet> list, CoinSet coin) {
-        int count = amount / coin.value;
-        if (count > 0) {
-            amount = amount - (count * coin.value);
-            for (int i = 0; i < count; i++) {
-                list.add(coin);
-            }
-        }
-    }
-
-    private List<CoinSet> getCoinSets(CoinSet coin) {
-        List<CoinSet> list = new ArrayList<>();
-        int quantity = amount / coin.value;
-        for (int i = 0; i < quantity; i++) {
-            list.add(coin);
-        }
-
-        return list;
-    }
-
 }
