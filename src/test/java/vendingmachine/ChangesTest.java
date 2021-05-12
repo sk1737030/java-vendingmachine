@@ -1,6 +1,5 @@
 package vendingmachine;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -44,9 +43,7 @@ class ChangesTest {
     }
 
     @Test
-    void _650원이_남아_있다면_500원_100원_50원_동전_각각_1개_씩_돌려준다()
-
-    {
+    void _650원이_남아_있다면_500원_100원_50원_동전_각각_1개_씩_돌려준다() {
         Changes changes = new Changes(650);
         List<CoinSet> coinSet = changes.coin();
         assertThat(coinSet).containsExactlyInAnyOrder(CoinSet._500_COIN, CoinSet._100_COIN, CoinSet._50_COIN);
